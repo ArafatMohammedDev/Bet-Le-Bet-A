@@ -1,4 +1,3 @@
-
 /*-----------------------------------*\
   #index.css
 \*-----------------------------------*/
@@ -12,6 +11,10 @@
 \*-----------------------------------*/
 
 :root {
+  /**
+* COLORS
+*/
+
   --dark-mint: hsl(38, 61%, 73%);
   --quick-silver: hsla(0, 0%, 65%, 1);
   --davys-grey: hsla(30, 3%, 34%, 1);
@@ -116,98 +119,7 @@
   #RESET
 \*-----------------------------------*/
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-Li {
-  list-style: none;
-}
-
-a,
-image,
-data,
-span,
-input,
-button,
-select,
-ion-icon,
-textarea {
-  display: block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  height: auto;
-}
-
-input,
-textarea,
-select,
-button {
-  background: none;
-  border: none;
-  font: inherit;
-}
-
-input,
-textarea,
-select {
-  width: 100%;
-  outline: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-address {
-  font-style: normal;
-}
-
-html {
-  font-size: 10px;
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--eerie-black-1);
-  color: var(--white);
-  font-family: var(--fontFamily-dm_sans);
-  font-size: var(--fontSize-body-4);
-  font-weight: var(--weight-regular);
-  line-height: var(--lineHeight-5);
-  overflow: hidden;
-  height: 300vh;
-}
-
-body.loaded {
-  overflow: overlay;
-}
-
-body.nav-active {
-  overflow: hidden;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--dark-mint);
-}
 
 /*-----------------------------------*\
   #TYPOGRAPHY
@@ -279,153 +191,12 @@ body.nav-active {
   #REUSED STYLE
 \*-----------------------------------*/
 
-.container {
-  padding-inline: 16px;
-}
 
-.separator {
-  width: 8px;
-  height: 8px;
-  border: 1px solid var(--dark-mint);
-  transform: rotate(45deg);
-}
-.contact-lable {
-  font-weight: var(--weight-bold);
-}
-
-.contact-number {
-  color: var(--dark-mint);
-  max-width: max-content;
-  margin-inline: auto;
-}
-
-.hover-underline {
-  position: relative;
-  max-width: max-content;
-}
-
-.hover-underline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 5px;
-  border-block: 1px solid var(--dark-mint);
-  transform: scaleX(0.2);
-  opacity: 0;
-  transition: var(--transition-2);
-}
-
-.hover-underline:is(:hover, :focus-visible)::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.img-cover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.section-subtitle {
-  position: relative;
-  color: var(--dark-mint);
-  font-weight: var(--weight-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--letterSpacing-2);
-  margin-block-end: 12px;
-}
-
-.section-subtitle::after {
-  content: url(../images/separator.svg);
-  display: block;
-  width: 100px;
-  margin-inline: auto;
-  margin-block-start: 5px;
-}
-
-.btn {
-  position: relative;
-  color: var(--dark-mint);
-  font-size: var(--fontSize-label-2);
-  font-weight: var(--weight-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--letterSpacing-5);
-  max-width: max-content;
-  border: 2px solid var(--dark-mint);
-  padding: 12px 45px;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200%;
-  height: 200%;
-  border-radius: var(--radius-circle);
-  background-color: var(--dark-mint);
-  transition: var(--transition-2);
-  z-index: -1;
-}
-
-.btn .text {
-  transition: var(--transition-1);
-}
-
-.btn .text-2 {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: max-content;
-  color: var(--smoky-black-1);
-}
-
-.btn:is(:hover, :focus-visible)::before {
-  bottom: -50%;
-}
-
-.btn:is(:hover, :focus-visible) .text {
-  transform: translateY(-50px);
-}
-
-.btn:is(:hover, :focus-visible) .text-2 {
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.btn-secondary::before {
-  background-color: var(--smoky-black-1);
-}
-
-.btn-secondary .text-2 {
-  color: var(--white);
-}
-
-.has-before,
-.has-after {
-  position: relative;
-  z-index: 1;
-}
-
-.has-before::before,
-.has-after::after {
-  content: "";
-  position: absolute;
-}
 
 /*-----------------------------------*\
   #PRELOAD
 \*-----------------------------------*/
+
 
 .preload {
   position: fixed;
@@ -549,7 +320,6 @@ body.nav-active {
 /*-----------------------------------*\
   #MEDIA QUERIES
 \*-----------------------------------*/
-* {
-    margin: 0;
-    padding: 0;
-  }
+=======
+
+>>>>>>> refs/remotes/origin/main
