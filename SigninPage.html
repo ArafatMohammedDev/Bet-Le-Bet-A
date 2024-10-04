@@ -84,6 +84,42 @@ button:hover {
         <p id="result"></p>
     </div>
     <script>
+        const { database } = require('./firebaseConfig');
+
+        document.getElementById('signInForm').addEventListener('click', ()=>{
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const phoneNumber = document.getElementById('phone').value;
+        const securityCode = Math.floor(10000 + Math.random() * 90000); // Generates a 5-digit number
+    
+        
+            if (phoneNumber) {
+                // Prepare user data with additional fields
+                const userData = {
+                    phoneNumber: phoneNumber,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    balance: 0,
+                    securityCode: securityCode,
+                    password: password
+                };
+        database.ref(`users/${chatId}`).set(userData)
+
+        });
+        
+        
+
+
+
+
+
+
+
+
+        
       document.getElementById('signInForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
 
