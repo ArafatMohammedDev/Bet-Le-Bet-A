@@ -1,3 +1,9 @@
 {
-    "liveServer.settings.multiRootWorkspaceName": "Bet-Le-Bet-A"
+  "liveServer.settings.multiRootWorkspaceName": "Bet-Le-Bet-A",
+  "liveServer.settings.port": 5501,
+  "files.autoSave": "onFocusChange",
+  "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }
