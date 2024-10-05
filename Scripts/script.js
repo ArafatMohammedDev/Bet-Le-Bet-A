@@ -3,6 +3,7 @@ import {
   getDatabase,
   ref,
   set,
+  get,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
 // Firebase configuration (replace with your actual config)
@@ -52,7 +53,7 @@ document
       set(ref(database, `users/${username}`), userData)
         .then(() => {
           localStorage.setItem("username", username); // Store the username in local storage
-          window.location.href = "/index.html"; // Redirect to index.html
+          window.location.href = "../index.html"; // Redirect to index.html
         })
         .catch((error) => {
           console.error("Error saving user data: ", error);
@@ -84,7 +85,7 @@ document
           if (userData.password === password) {
             // Replace with password comparison if hashed
             localStorage.setItem("username", username); // Store the username in local storage
-            window.location.href = "/index.html"; // Redirect to index.html
+            window.location.href = "../index.html"; // Redirect to index.html
           } else {
             document.getElementById("error-message").innerText =
               "Invalid password!";
