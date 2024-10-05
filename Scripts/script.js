@@ -4,10 +4,6 @@ import {
   ref,
   set,
   get,
-  query,
-  orderByChild,
-  equalTo,
-  onValue,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
 // Firebase configuration (replace with your actual config)
@@ -26,10 +22,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// JavaScript to handle form submission and add a simple validation
+// Function to generate a unique security code
+async function generateUniqueSecurityCode() {
+  let securityCode;
+  let codeExists;
+
+  do {
+    securityCode = Math.floor(10 + Math.random() * 90); // Generate a new 5-digit security code
+    const codeRef = ref(database, `securityCodes/${securityCode}`);
+
+    // Check if the generated security code already exists
+    const snapshot = await get(codeRef);
+    codeExists = snapshot.exists(); // True if the code exists, otherwise false
+  } while (codeExists); // Continue generating until a unique code is found
+
+  // Save the unique security code in the database for tracking purposes
+  await set(ref(database, `securityCodes/${securityCode}`), true);
+  return securityCode; // Return the unique code
+}
+
+// JavaScript to handle form submission and add simple validation
 document
   .getElementById("signin-form")
-  .addEventListener("submit", function (event) {
+  .addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form submission
 
     // Get the values from the input fields
@@ -44,16 +59,17 @@ document
       const userRef = ref(database, `users/${username}`);
 
       get(userRef)
-        .then((snapshot) => {
+        .then(async (snapshot) => {
           if (snapshot.exists()) {
             // Username is taken
+            document.getElementById("signup-username").style.borderColor =
+              "red";
             document.getElementById("register-manualy").innerText =
               "Username already taken!";
-            document.getElementById("register-manualy").className =
-              "userNameEror";
+            document.getElementById("register-manualy").style.color = "red";
           } else {
-            // Username is available, proceed to register the user
-            const securityCode = Math.floor(10000 + Math.random() * 90000); // Generates a 5-digit number
+            // Username is available, proceed to generate a unique security code
+            const securityCode = await generateUniqueSecurityCode(); // Wait for a unique security code
 
             const userData = {
               username: username,
@@ -138,16 +154,30 @@ loginBtn.addEventListener("click", () => {
 -strenght
 */
 var pass = document.getElementById("signup-password");
-var msg = document.getElementById("passwordMssg");
+var msg = document.querySelector(".passwordMssg");
 var str = document.getElementById("strenght");
+const signUpBtn = document.querySelector(".sign-in-btn");
 
 pass.addEventListener("input", () => {
   if (pass.value.length > 0) {
-    msg.style.display = "block;";
+    msg.style.display = "block";
   } else {
     msg.style.display = "none";
   }
-  if (pass.value.length < 4) {
+  if (pass.value.length < 5) {
     str.innerHTML = "Weak";
+    pass.style.borderColor = "#ff5925";
+    str.style.color = "#ff5925";
+    signUpBtn.style.display = "none";
+  } else if (pass.value.length >= 5 && pass.value.length < 8) {
+    str.innerHTML = "Medium";
+    pass.style.borderColor = "orange";
+    str.style.color = "orange";
+    signUpBtn.style.display = "block";
+  } else {
+    str.innerHTML = "Strong";
+    pass.style.borderColor = "#26d730";
+    str.style.color = "#26d730";
+    signUpBtn.style.display = "block";
   }
 });
