@@ -2,7 +2,12 @@
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
-
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
 :root {
   /**
 * COLORS
