@@ -3,19 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+    - font-awesome cdn
+    -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <!--
+    - favicon
+    -->
+
+    <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+
+    <!--
+    - custom css
+    -->
+
     <link rel="stylesheet" href="style.css" />
+
     <title>Flip-Hacks-Login-Page</title>
   </head>
   <body>
     <h1 class="h1">
       <b> Flip Hacks </b>
     </h1>
+
+    <!--
+    - Main-container
+    -->
     <div class="container" id="container">
       <div class="form-container sign-up">
+        <!--
+    - sign up form
+    -->
         <form>
           <h1>Create Account :</h1>
           <div class="social-icons">
@@ -25,15 +46,24 @@
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <span>or use your email for registration :</span>
-          <input type="text" placeholder="FullName" required />
-          <input type="Field" placeholder="DesiredField" required />
-          <input type="email" placeholder="Email" required />
+          <input
+            type="text"
+            id="first-name"
+            placeholder="First Name"
+            required
+          />
+          <input type="text" id="last-name" placeholder="Last Name" required />
+          <input type="text" id="username" placeholder="Username" required />
           <input type="password" placeholder="Password" required />
           <input type="number" placeholder="PhoneNumber" />
           <button id="#">Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in">
+        <!--
+    - login form
+    -->
+
         <form>
           <h1>Log In :</h1>
           <div class="social-icons">
@@ -43,13 +73,15 @@
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <span>or use your email password :</span>
-          <input type="Field" placeholder="Field" required />
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
           <button>Log In</button>
         </form>
       </div>
+      <!--
+    - toggle tab(to 'login' or to 'sign up')
+    -->
       <div class="toggle-container">
         <div class="toggle">
           <div class="toggle-panel toggle-left">
