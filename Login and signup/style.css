@@ -365,7 +365,15 @@ form button {
 /**
   * HOVER ANIMATIONS
   */
-
+.container button:hover,
+.social-icons a:hover,
+#login:hover,
+#register:hover {
+  background-color: var(--dark-mint);
+  border: 1px solid transparent;
+  color: var(--eerie-black-3);
+  transition: 0.3s linear;
+}
 /**
   * RESPONSIVE
   */
