@@ -7,7 +7,7 @@
   /**
 * COLORS
 */
-
+  --custom-grey: hsl(0, 1%, 17%);
   --dark-mint: hsl(163, 88%, 50%);
   --quick-silver: hsla(0, 0%, 65%, 1);
   --davys-grey: hsla(30, 3%, 34%, 1);
@@ -164,25 +164,25 @@ body {
 .container span {
   border: 1px solid transparent;
   border-radius: 20px;
-  background-color: hsl(192, 88%, 50%);
   padding-block: 4px;
   padding-left: 4px;
   padding-right: 4px;
   font-size: 13px;
   font-weight: 600;
   line-height: var(--lineHeight-3);
+  color: var(--eerie-black-3);
 }
 
 .container a {
-  color: var(--eerie-black-1);
+  color: var(--white);
   font-size: 13px;
   text-decoration: none;
   margin: 15px 0 10px;
 }
 
 .container button {
-  background-color: var(--dark-mint);
-  color: var(--eerie-black-3);
+  background-color: var(--custom-grey);
+  color: var(--white);
   padding: 10px 45px;
   border: 1px solid transparent;
   border-radius: 8px;
@@ -195,7 +195,6 @@ body {
 
 .container button.hidden {
   background-color: transparent;
-  background-color: var(--dark-mint);
   color: var(--eerie-black-3);
   padding: 10px 45px;
   border: 1px solid transparent;
@@ -279,7 +278,7 @@ body {
 .social-icons a {
   border: 5px solid transparent;
   border-radius: 20px;
-  border-color: hsl(192, 88%, 50%);
+  background-color: var(--custom-grey);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -307,9 +306,9 @@ body {
 }
 
 .toggle {
-  background-color: hsl(192, 88%, 50%);
+  background-color: var(--custom-grey);
   height: 100%;
-  color: var(--eerie-black-4);
+  color: var(--white);
   position: relative;
   left: -100%;
   height: 100%;
@@ -352,4 +351,16 @@ body {
 
 .container.active .toggle-right {
   transform: translateX(200%);
+}
+
+#register,
+#login {
+  color: var(--white);
+  border: 1px solid var(--white);
+  background-color: var(--custom-grey);
+}
+form button {
+  color: var(--white);
+  border: 1px solid var(--white);
+  background-color: var(--custom-grey);
 }
