@@ -13,7 +13,7 @@
 * COLORS
 */
   --custom-grey: hsl(0, 1%, 17%);
-  --dark-mint: hsl(163, 88%, 50%);
+  --dark-mint: hsl(38, 61%, 73%);
   --quick-silver: hsla(0, 0%, 65%, 1);
   --davys-grey: hsla(30, 3%, 34%, 1);
   --smoky-black-1: hsla(40, 12%, 5%, 1);
@@ -129,8 +129,7 @@
 }
 
 body {
-  background-image: url("bg.svg");
-  background-size: cover;
+  background-color: var(--dark-mint);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,7 +154,7 @@ body {
   position: relative;
   overflow: hidden;
   width: 798px;
-  min-height: 300px;
+  min-height: 500px;
 }
 
 .container p {
@@ -378,6 +377,23 @@ form button {
   border: 1px solid transparent;
   color: var(--eerie-black-3);
   transition: 0.3s linear;
+}
+
+/*
+-Strenght
+*/
+.userNameEror {
+  color: red;
+  margin-top: -5px;
+}
+#message {
+  display: none;
+}
+#passwordMssg {
+  color: var(--black);
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 /**
   * RESPONSIVE

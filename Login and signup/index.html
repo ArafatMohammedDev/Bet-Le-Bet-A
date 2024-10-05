@@ -45,7 +45,7 @@
             <a href="#" class="social"><i class="fa-brands fa-github"></i></a>
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
-          <span>or registor manualy: </span>
+          <span id="register-manualy">or registor manualy: </span>
           <input
             type="text"
             id="first-name"
@@ -59,13 +59,14 @@
             placeholder="Username"
             required
           />
+          <input type="number" id="phone-number" placeholder="PhoneNumber" />
           <input
             type="password"
             id="signup-password"
             placeholder="Password"
             required
           />
-          <input type="number" id="phone-number" placeholder="PhoneNumber" />
+          <p id="passwordMssg">Password is <span class="strenght"></span></p>
           <button id="#">Sign Up</button>
         </form>
       </div>

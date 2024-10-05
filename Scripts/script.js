@@ -4,6 +4,10 @@ import {
   ref,
   set,
   get,
+  query,
+  orderByChild,
+  equalTo,
+  onValue,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
 // Firebase configuration (replace with your actual config)
@@ -23,7 +27,6 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // JavaScript to handle form submission and add a simple validation
-// JavaScript to handle form submission and add a simple validation
 document
   .getElementById("signin-form")
   .addEventListener("submit", function (event) {
@@ -37,26 +40,43 @@ document
     const phoneNumber = document.getElementById("phone-number").value;
 
     if (phoneNumber) {
-      // Prepare user data with additional fields
-      const securityCode = Math.floor(10000 + Math.random() * 90000); // Generates a 5-digit number
+      // Check if username is already taken
+      const userRef = ref(database, `users/${username}`);
 
-      const userData = {
-        username: username,
-        phoneNumber: phoneNumber,
-        firstName: firstname,
-        lastName: lastname,
-        password: password,
-        securityCode: securityCode,
-      };
+      get(userRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            // Username is taken
+            document.getElementById("register-manualy").innerText =
+              "Username already taken!";
+            document.getElementById("register-manualy").className =
+              "userNameEror";
+          } else {
+            // Username is available, proceed to register the user
+            const securityCode = Math.floor(10000 + Math.random() * 90000); // Generates a 5-digit number
 
-      // Save user data to Firebase
-      set(ref(database, `users/${username}`), userData)
-        .then(() => {
-          localStorage.setItem("username", username); // Store the username in local storage
-          window.location.href = "../index.html"; // Redirect to index.html
+            const userData = {
+              username: username,
+              phoneNumber: phoneNumber,
+              firstName: firstname,
+              lastName: lastname,
+              password: password,
+              securityCode: securityCode,
+            };
+
+            // Save user data to Firebase
+            set(userRef, userData)
+              .then(() => {
+                localStorage.setItem("username", username); // Store the username in local storage
+                window.location.href = "../index.html"; // Redirect to index.html
+              })
+              .catch((error) => {
+                console.error("Error saving user data: ", error);
+              });
+          }
         })
         .catch((error) => {
-          console.error("Error saving user data: ", error);
+          console.error("Error checking username: ", error);
         });
     }
   });
@@ -112,4 +132,22 @@ registerBtn.addEventListener("click", () => {
 
 loginBtn.addEventListener("click", () => {
   container.classList.remove("active");
+});
+
+/*
+-strenght
+*/
+var pass = document.getElementById("signup-password");
+var msg = document.getElementById("passwordMssg");
+var str = document.getElementById("strenght");
+
+pass.addEventListener("input", () => {
+  if (pass.value.length > 0) {
+    msg.style.display = "block;";
+  } else {
+    msg.style.display = "none";
+  }
+  if (pass.value.length < 4) {
+    str.innerHTML = "Weak";
+  }
 });
