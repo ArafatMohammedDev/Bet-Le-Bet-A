@@ -112,6 +112,7 @@
           <th>Password</th>
           <th>Security Code</th>
           <th>Pass/Fail</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody id="user-table-body">
@@ -125,6 +126,7 @@
         ref,
         get,
         update,
+        remove,
       } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
       // Firebase configuration (replace with your actual config)
@@ -205,6 +207,9 @@
                                         <option value="Fail">Fail</option>
                                     </select>
                                 </td>
+                                <td>
+                                    <button data-username="${key}" class="delete-user-btn">Delete</button>
+                                </td>
                             `;
 
                 // Set current status if exists
@@ -220,7 +225,7 @@
               if (!usersFound) {
                 // If no users match the search, show a message
                 tbody.innerHTML =
-                  '<tr><td colspan="7">No users found with the provided security code.</td></tr>';
+                  '<tr><td colspan="8">No users found with the provided security code.</td></tr>';
               }
 
               // Add event listener to dropdowns
@@ -241,6 +246,27 @@
                     })
                     .catch((error) => {
                       console.error("Error updating Pass/Fail status: ", error);
+                    });
+                });
+              });
+
+              // Add event listener to delete buttons
+              const deleteButtons =
+                document.getElementsByClassName("delete-user-btn");
+              Array.from(deleteButtons).forEach((button) => {
+                button.addEventListener("click", function () {
+                  const username = this.getAttribute("data-username");
+
+                  // Delete the user from the database
+                  const userRef = ref(database, `users/${username}`);
+                  remove(userRef)
+                    .then(() => {
+                      console.log(`User ${username} deleted successfully`);
+                      // Remove the corresponding row from the table
+                      this.closest("tr").remove();
+                    })
+                    .catch((error) => {
+                      console.error("Error deleting user: ", error);
                     });
                 });
               });
