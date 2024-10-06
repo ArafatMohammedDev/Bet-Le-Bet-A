@@ -9,13 +9,35 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <style>
+      :root {
+        /**
+      * COLORS
+      */
+
+        --dark-mint: hsl(38, 61%, 73%);
+        --quick-silver: hsla(0, 0%, 65%, 1);
+        --davys-grey: hsla(30, 3%, 34%, 1);
+        --smoky-black-1: hsla(40, 12%, 5%, 1);
+        --smoky-black-2: hsla(30, 8%, 5%, 1);
+        --smoky-black-3: hsla(0, 3%, 7%, 1);
+        --eerie-black-1: hsla(210, 4%, 9%, 1);
+        --eerie-black-2: hsla(210, 4%, 11%, 1);
+        --eerie-black-3: hsla(180, 2%, 8%, 1);
+        --eerie-black-4: hsla(0, 0%, 13%, 1);
+        --white: hsla(0, 0%, 100%, 1);
+        --white-alpha-20: hsla(0, 0%, 100%, 0.2);
+        --white-alpha-10: hsla(0, 0%, 100%, 0.1);
+        --black: hsla(0, 0%, 0%, 1);
+        --black-alpha-80: hsla(0, 0%, 0%, 0.8);
+        --black-alpha-15: hsla(0, 0%, 0%, 0.15);
+      }
       body,
       html {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: Arial, sans-serif;
-        background: #f5f5f5;
+        background: var(--davys-grey);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -36,16 +58,16 @@
       input {
         width: 300px;
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--eerie-black-4);
         border-radius: 5px;
       }
 
       button {
         padding: 8px 12px;
         margin-left: 10px;
-        background: #ff6b6b;
-        color: #fff;
-        border: none;
+        background: var(--dark-mint);
+        color: var(--eerie-black-3);
+        border: 1px solid var(--eerie-black-4);
         border-radius: 5px;
         cursor: pointer;
         display: flex;
@@ -53,7 +75,7 @@
       }
 
       button:hover {
-        background: #ff4b4b;
+        background: var(--dark-mint);
       }
 
       button i {
@@ -69,7 +91,7 @@
       table,
       th,
       td {
-        border: 1px solid #ddd;
+        border: 1px solid var(--eerie-black-4);
       }
 
       th,
@@ -79,14 +101,25 @@
       }
 
       th {
-        background: #ff9a9e;
-        color: #fff;
+        background-color: var(--dark-mint);
+        color: var(--eerie-black-3);
       }
 
       select {
         padding: 5px;
         border-radius: 5px;
         cursor: pointer;
+      }
+      #load-users {
+        margin-right: 10%;
+      }
+      h1 {
+        margin-right: 8%;
+        color: var(--dark-mint);
+      }
+      button:hover {
+        color: var(--white);
+        background-color: var(--smoky-black-3);
       }
     </style>
   </head>
