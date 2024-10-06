@@ -30,6 +30,23 @@
         --black: hsla(0, 0%, 0%, 1);
         --black-alpha-80: hsla(0, 0%, 0%, 0.8);
         --black-alpha-15: hsla(0, 0%, 0%, 0.15);
+
+        /**
+  * GRADIENT COLOR
+  */
+
+        --loading-text-gradient: linear-gradient(
+          90deg,
+          transparent 0% 16.66%,
+          var(--smoky-black-3) 33.33% 50%,
+          transparent 66.66% 75%
+        );
+        --gradient-1: linear-gradient(
+          to top,
+          hsla(0, 0%, 0%, 0.9),
+          hsla(0, 0%, 0%, 0.7),
+          transparent
+        );
       }
       body,
       html {
@@ -114,8 +131,28 @@
         margin-right: 10%;
       }
       h1 {
-        margin-right: 8%;
-        color: var(--dark-mint);
+        background-image: var(--loading-text-gradient);
+        background-size: 500%;
+        font-size: calc(2rem + 3vw);
+        font-weight: var(--weight-bold);
+        line-height: 1em;
+        text-transform: uppercase;
+        letter-spacing: 16px;
+        padding-inline-start: 16px;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-stroke: 0.5px var(--eerie-black-3);
+        animation: loadingtext 2s linear infinite;
+        padding-left: 5%;
+      }
+      @keyframes loadingtext {
+        0% {
+          background-position: 100%;
+        }
+        100% {
+          background-position: 0%;
+        }
       }
       button:hover {
         color: var(--white);
