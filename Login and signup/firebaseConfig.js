@@ -2,14 +2,13 @@
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCVIym8X-GDRx6_1256dtVZdo3hIm7TRgI",
-  authDomain: "flipper-hack.firebaseapp.com",
-  databaseURL: "https://flipper-hack-default-rtdb.firebaseio.com",
-  projectId: "flipper-hack",
-  storageBucket: "flipper-hack.appspot.com",
-  messagingSenderId: "9118741906",
-  appId: "1:9118741906:web:d8860d3094a46bafd37d4b",
-  measurementId: "G-EYLLFHW5XS"
+  apiKey: "AIzaSyC1PdDQ7UxqbrLp31yCxnHLkZ7PKPJdo7M",
+  authDomain: "bet-le-bet.firebaseapp.com",
+  projectId: "bet-le-bet",
+  storageBucket: "bet-le-bet.appspot.com",
+  messagingSenderId: "520191490943",
+  appId: "1:520191490943:web:0829c204a776ad7af9784a",
+  measurementId: "G-6TZ3KMFN50"
 };
 
 // Import the Firebase JavaScript SDK dynamically in the HTML file
