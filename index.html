@@ -27,11 +27,16 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
       rel="stylesheet"
     />
-
+    <script src="https://kit.fontawesome.com/6d920f641e.js" crossorigin="anonymous"></script>
+    
     <!--
     - custom css link
     -->
+    <link rel="stylesheet" href="Styles/general /header.css">
     <link rel="stylesheet" href="Styles/index.css" />
+    <link rel="stylesheet" href="Styles/general /dropdownMenu.css">
+    <link rel="stylesheet" href="Styles/indexBody.css">
+    <link rel="stylesheet" href="Styles/general /betlebetheader.css">
 
     <title>Bet-Le-Bet</title>
   </head>
@@ -44,9 +49,122 @@
       <p class="text">BetLeBet</p>
     </div>
 
+
+
+        <!--
+        - Top bar
+        -->
+
+
+    <div class="betlebetheader">
+      <div class="betlebetheader-left-section">
+      </div>
+
+    <div class="betlebetheader-left-section user-icon" id="userIcon" tabindex="0" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-user header-user-icon"></i>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="profile.html" class="dropdown-item">Profile</a>
+                    <a id="inboxLink" class="dropdown-item">inbox</a>
+                    <a id="groupChat" class="dropdown-item inboxLink">Group Chat</a> <a
+                        href="Login and signup/index.html" class="dropdown-item">Logout</a>
+        </div>
+   
+      </div>
+
+      <div class="betlebetheader-middle-section">
+        <input class="search-bar" type="text" placeholder="Search">
+
+        <button class="search-button">
+          <img class="search-icon" src="images/icons/search-icon.png">
+        </button>
+      </div></div>
+
+
+
+
+<!--
+-Body    
+-->
+    <div class="container">
+      <div class="target-tab">
+        <div class="upload-container">
+          <h1>Upload Posts?</h1>
+          <a><button class="upload-post-btn">Form</button></a>
+        </div>
+      </div>
+      <div class="content-tab">
+
+        <div class="post">
+          <div class="userInfo">
+            <i class="fa-solid fa-user"></i>
+            <h1 class="name">Arafat M</h1>
+            <p>Posted 6 min ago</p>
+          </div>
+          <div class="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui fugit odio, dicta ut et expedita facilis? Consequatur provident ut rem animi assumenda, laborum nulla, unde labore amet cum odit, sapiente eaque cumque recusandae nam saepe?
+              <a href="#">More...</a>
+            </div>
+        </div>
+        <div class="post">
+            <div class="userInfo">
+              <i class="fa-solid fa-user"></i>
+              <h1 class="name">Lewi Z</h1>
+              <p>Posted 6 min ago</p>
+            </div>
+            <div class="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui fugit odio, dicta ut et expedita facilis? Consequatur provident ut rem animi assumenda, laborum nulla, unde labore amet cum odit, sapiente eaque cumque recusandae nam saepe?
+              <a href="#">More...</a>
+            </div>
+        </div>
+        <div class="post">
+            <div class="userInfo">
+              <i class="fa-solid fa-user"></i>
+              <h1 class="name">Noel F</h1>
+              <p>Posted 1 day ago</p>
+            </div>
+            <div class="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui fugit odio, dicta ut et expedita facilis? Consequatur provident ut rem animi assumenda, laborum nulla, unde labore amet cum odit, sapiente eaque cumque recusandae nam saepe?
+              <a href="#">More...</a>
+            </div>
+        </div>
+        <div class="post">
+            <div class="userInfo">
+              <i class="fa-solid fa-user"></i>
+              <h1 class="name">Lewi Z</h1>
+              <p>Posted 6 min ago</p>
+            </div>
+            <div class="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui fugit odio, dicta ut et expedita facilis? Consequatur provident ut rem animi assumenda, laborum nulla, unde labore amet cum odit, sapiente eaque cumque recusandae nam saepe?
+              <a href="#">More...</a>
+            </div>
+        </div>
+        <div class="post">
+            <div class="userInfo">
+              <i class="fa-solid fa-user"></i>
+              <h1 class="name">Noel F</h1>
+              <p>Posted 1 day ago</p>
+            </div>
+            <div class="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui fugit odio, dicta ut et expedita facilis? Consequatur provident ut rem animi assumenda, laborum nulla, unde labore amet cum odit, sapiente eaque cumque recusandae nam saepe?
+              <a href="#">More...</a>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+
+
+
+
+
+
+
     <!--
     - custom js link
     -->
+    <script type="module" src="Scripts/indexBody.js"></script>
+    <script src="Scripts/general/navbar.js"></script>
+    <script src = "Scripts/general/dropdownMenu.js" defer></script>
     <script src="Scripts/index.js"></script>
 
     <!--

@@ -164,6 +164,14 @@
 .title-4 {
   font-size: var(--fontSize-title-4);
 }
+body {
+  background-color: rgb(255, 252, 247);
+  font-family: var(--fontFamily-dm_sans);
+  font-size: var(--fontSize-body-4);
+  font-weight: var(--weight-regular);
+  line-height: var(--lineHeight-5);
+  height: 300vh;
+}
 
 .body-1 {
   font-size: var(--fontSize-body-1);
