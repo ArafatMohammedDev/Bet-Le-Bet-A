@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+    - primary meta tags
+    -->
+    <title>Bet-Le-Bet - Handy Men</title>
+    <meta name="title" content="FlipHacks - Creative & Inovative Minds" />
+    <meta
+      name="description"
+      content="This is a Handy-man-service website made by Lewi zelalem and Arafat mohammed"
+    />
+    <!--
+    - favicon
+    -->
+    <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+
+    <!--
+    - google fonts link
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/6d920f641e.js" crossorigin="anonymous"></script>
+    
+    <!--
+    - custom css link
+    -->
+    <link rel="stylesheet" href="Styles/general /header.css">
+    <link rel="stylesheet" href="Styles/form.css" />
+    <link rel="stylesheet" href="Styles/general /dropdownMenu.css">
+
+    <title>Bet-Le-Bet</title>
+  </head>
+  <body>
+
+        <!--
+        - Top bar
+        -->
+
+
+    <div class="betlebetheader">
+      <div class="betlebetheader-left-section">
+      </div>
+
+    <div class="betlebetheader-left-section user-icon" id="userIcon" tabindex="0" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-user header-user-icon"></i>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/index.html" class="dropdown-item">Profile</a>
+                    <a id="inboxLink" class="dropdown-item">inbox</a>
+                    <a id="groupChat" class="dropdown-item inboxLink">Group Chat</a> 
+                    <a href="Login and signup/index.html" class="dropdown-item">Logout</a>
+        </div>
+   
+      </div>
+    </div>
+
+
+
+
+
+    <!--
+    -Body    
+        -->
+    <div class="container">
+        <form id="signin-form">
+            <h1>Post :</h1>
+            <textarea 
+            name="" 
+            id="description"
+            cols="30"
+            rows="10"
+            placeholder="Description..."
+            required
+            ></textarea>
+            <input type="text" id="location" placeholder="Location" required />
+            <input type="number" id="phone-number" placeholder="PhoneNumber" />
+            <input
+                type="password"
+                id="signup-password"
+                placeholder="Password"
+                required
+            />
+            <button class="sign-in-btn" type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
+
+
+
+
+    <!--
+    - custom js link
+    -->
+    <script type="module" src="Scripts/form.js"></script>
+    <script src="Scripts/general/navbar.js"></script>
+    <script src = "Scripts/general/dropdownMenu.js" defer></script>
+    <script src="Scripts/index.js"></script>
+
+    <!--
+    - ionicon link
+    -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<!-- Firebase Firestore SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+  </body>
+</html>
