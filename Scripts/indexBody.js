@@ -5,6 +5,7 @@ import {
   get,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 import dayJs from ' https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
 // Firebase configuration (same as before)
 const firebaseConfig = {
   apiKey: "AIzaSyC1PdDQ7UxqbrLp31yCxnHLkZ7PKPJdo7M",

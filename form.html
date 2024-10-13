@@ -71,6 +71,7 @@
     <div class="container">
         <form id="signin-form">
             <h1>Post :</h1>
+            <h1 class="textarea-error-msg"></h1>
             <textarea 
             name="" 
             id="description"
@@ -87,7 +88,7 @@
                 placeholder="Password"
                 required
             />
-            <button class="sign-in-btn" type="submit">Submit</button>
+            <button class="sign-in-btn" type="submit" id="submit-btn">Submit</button>
         </form>
     </div>
 
@@ -100,7 +101,7 @@
     <!--
     - custom js link
     -->
-    <script type="module" src="Scripts/form.js"></script>
+    <script type="module" src="Scripts/form.js" defer></script>
     <script src="Scripts/general/navbar.js"></script>
     <script src = "Scripts/general/dropdownMenu.js" defer></script>
     <script src="Scripts/index.js"></script>

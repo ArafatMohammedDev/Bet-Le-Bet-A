@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .load-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .load-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .status {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Review Admin Panel</h1>
+    <button id="load-review-posts" class="load-btn">Load Review Posts</button>
+    <div class="status"></div>
+    <table id="review-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Date Created</th>
+                <th>Description</th>
+                <th>Password Correct</th>
+                <th>Location</th>
+                <th>Phone Number</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Review entries will be populated here -->
+        </tbody>
+    </table>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import {
+            getDatabase,
+            ref,
+            onValue,
+            remove,
+            set
+        } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+
+// Firebase configuration (same as signin.js)
+const firebaseConfig = {
+  apiKey: "AIzaSyC1PdDQ7UxqbrLp31yCxnHLkZ7PKPJdo7M",
+  authDomain: "bet-le-bet.firebaseapp.com",
+  projectId: "bet-le-bet",
+  storageBucket: "bet-le-bet.appspot.com",
+  messagingSenderId: "520191490943",
+  appId: "1:520191490943:web:0829c204a776ad7af9784a",
+  measurementId: "G-6TZ3KMFN50"
+};
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        document.getElementById("load-review-posts").addEventListener("click", loadReviewEntries);
+
+        function loadReviewEntries() {
+            const reviewRef = ref(database, 'underReview');
+            onValue(reviewRef, (snapshot) => {
+                const reviewTableBody = document.getElementById('review-table').getElementsByTagName('tbody')[0];
+                reviewTableBody.innerHTML = ''; // Clear previous entries
+
+                snapshot.forEach((childSnapshot) => {
+                    const data = childSnapshot.val();
+                    const row = reviewTableBody.insertRow();
+                    const passwordCorrect = data.password === "YourExpectedPassword" ? 'Yes' : 'No'; // Replace with actual password check logic
+
+                    row.insertCell(0).textContent = data.username;
+                    row.insertCell(1).textContent = new Date(data.createdAt).toLocaleString();
+                    row.insertCell(2).textContent = data.description;
+                    row.insertCell(3).textContent = passwordCorrect;
+                    row.insertCell(4).textContent = data.location;
+                    row.insertCell(5).textContent = data.phoneNumber;
+
+                    // Review dropdown
+                    const reviewCell = row.insertCell(6);
+                    const reviewDropdown = document.createElement('select');
+                    
+                    const selectOption = document.createElement('option');
+                    selectOption.value = '';
+                    selectOption.textContent = 'Select';
+                    selectOption.disabled = true;
+                    selectOption.selected = true;
+
+                    const approveOption = document.createElement('option');
+                    approveOption.value = 'approve';
+                    approveOption.textContent = 'Approve';
+
+                    const deleteOption = document.createElement('option');
+                    deleteOption.value = 'delete';
+                    deleteOption.textContent = 'Delete';
+
+                    reviewDropdown.appendChild(selectOption);
+                    reviewDropdown.appendChild(approveOption);
+                    reviewDropdown.appendChild(deleteOption);
+                    reviewCell.appendChild(reviewDropdown);
+
+                    // Handle review actions
+                    reviewDropdown.addEventListener('change', function() {
+                        if (this.value === 'approve') {
+                            // Move to posts logic
+                            const approvedPostRef = ref(database, 'posts/' + childSnapshot.key);
+                            const approvedData = {
+                                username: data.username,
+                                createdAt: data.createdAt,
+                                description: data.description,
+                                location: data.location,
+                                phoneNumber: data.phoneNumber
+                            };
+
+                            set(approvedPostRef, approvedData)
+                                .then(() => {
+                                    remove(ref(database, 'underReview/' + childSnapshot.key))
+                                        .then(() => {
+                                            console.log("Post approved and moved to posts.");
+                                            loadReviewEntries(); // Reload entries
+                                        })
+                                        .catch((error) => console.error("Error deleting from underReview: ", error));
+                                })
+                                .catch((error) => console.error("Error adding to posts: ", error));
+                        } else if (this.value === 'delete') {
+                            // Delete from database logic
+                            remove(ref(database, 'underReview/' + childSnapshot.key))
+                                .then(() => {
+                                    console.log("Deleted successfully.");
+                                    loadReviewEntries(); // Reload entries
+                                })
+                                .catch((error) => console.error("Error deleting: ", error));
+                        }
+                    });
+                });
+
+                document.querySelector('.status').textContent = 'Posts loaded successfully.';
+            });
+        }
+    </script>
+</body>
+</html>

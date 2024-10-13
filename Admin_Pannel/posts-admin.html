@@ -6,8 +6,7 @@
     <title>Admin Panel</title>
     <style>
       /* General Reset */
-      body,
-      html {
+      body, html {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -29,14 +28,12 @@
         }
       }
 
-      /* Admin Panel Container */
       .admin-panel {
         padding: 40px;
         max-width: 90%;
         margin: 20px auto;
       }
 
-      /* Admin Information */
       .admin-info {
         background: #fff;
         padding: 20px;
@@ -57,12 +54,10 @@
         }
       }
 
-      .admin-info h2,
-      .admin-info h3 {
+      .admin-info h2, .admin-info h3 {
         margin: 0 0 10px 0;
       }
 
-      /* Search Container */
       .search-container {
         display: flex;
         align-items: center;
@@ -93,7 +88,6 @@
         background: #ff6b6b;
       }
 
-      /* Registration Container */
       .registration-container {
         width: 90%;
         background: #fff;
@@ -105,15 +99,6 @@
 
       .registration-container h4 {
         margin: 0 0 10px 0;
-      }
-
-      .dropdown {
-        margin-top: 10px;
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 16px;
       }
 
       /* Button Styles */
@@ -142,12 +127,7 @@
       </div>
 
       <div class="search-container">
-        <input
-          type="text"
-          id="search-input"
-          class="search-input"
-          placeholder="Enter first name"
-        />
+        <input type="text" id="search-input" class="search-input" placeholder="Enter first name" />
         <button id="search-button" class="search-button">Search</button>
       </div>
 
@@ -160,19 +140,18 @@
         getDatabase,
         ref,
         get,
-        update,
+        remove,
       } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
-      // Firebase configuration (replace with your actual config)
+      // Firebase configuration
       const firebaseConfig = {
-        apiKey: "AIzaSyCVIym8X-GDRx6_1256dtVZdo3hIm7TRgI",
-        authDomain: "flipper-hack.firebaseapp.com",
-        databaseURL: "https://flipper-hack-default-rtdb.firebaseio.com",
-        projectId: "flipper-hack",
-        storageBucket: "flipper-hack.appspot.com",
-        messagingSenderId: "9118741906",
-        appId: "1:9118741906:web:d8860d3094a46bafd37d4b",
-        measurementId: "G-EYLLFHW5XS",
+        apiKey: "AIzaSyC1PdDQ7UxqbrLp31yCxnHLkZ7PKPJdo7M",
+        authDomain: "bet-le-bet.firebaseapp.com",
+        projectId: "bet-le-bet",
+        storageBucket: "bet-le-bet.appspot.com",
+        messagingSenderId: "520191490943",
+        appId: "1:520191490943:web:0829c204a776ad7af9784a",
+        measurementId: "G-6TZ3KMFN50"
       };
 
       // Initialize Firebase
@@ -180,68 +159,47 @@
       const database = getDatabase(app);
 
       // Fetch total registrations and total accounts
-      const registrationsRef = ref(database, "Registration");
+      const registrationsRef = ref(database, "posts");
       get(registrationsRef)
         .then((snapshot) => {
           if (snapshot.exists()) {
             const registrations = snapshot.val();
             const totalRegistrations = Object.keys(registrations).length;
 
-            document.getElementById("total-registrations").innerText =
-              totalRegistrations;
+            document.getElementById("total-registrations").innerText = totalRegistrations;
 
             // Display each registration in its own container
-            const registrationsContainer =
-              document.getElementById("registrations");
+            const registrationsContainer = document.getElementById("registrations");
             for (const key in registrations) {
               if (registrations.hasOwnProperty(key)) {
                 const registration = registrations[key];
                 const registrationDiv = document.createElement("div");
                 registrationDiv.className = "registration-container";
-                registrationDiv.setAttribute(
-                  "data-first-name",
-                  registration.FullName.split(" ")[0]
-                ); // Set data attribute for first name
+
+                // Add post description and delete button
                 registrationDiv.innerHTML = `
-                            <h4>Full Name: ${registration.FullName}</h4>
-                            <p>Field: ${registration.field}</p>
-                            <p>School: ${registration.school}</p>
-                            <p>Grade: ${registration.grade}</p>
-                            <p>Team: ${registration.Team}</p>
-                            <p>Description: ${registration.description}</p>
-                            <select class="dropdown" data-username="${String(
-                              registration.FullName.split(" ")[0]
-                            )}">
-                                <option value="">Select Status</option>
-                                <option value="Pass">Pass</option>
-                                <option value="Fail">Fail</option>
-                            </select>
-                        `;
+                  <h4>Full Name: ${registration.username}</h4>
+                  <p>Post Description: ${registration.description}</p>
+                  <button class="delete-button" data-key="${key}">Delete</button>
+                `;
                 registrationsContainer.appendChild(registrationDiv);
               }
             }
 
-            // Add event listeners to each dropdown
-            const dropdowns = document.querySelectorAll(".dropdown");
-            dropdowns.forEach((dropdown) => {
-              dropdown.addEventListener("change", (event) => {
-                const username = String(event.target.dataset.username); // Convert to string
-                const status = event.target.value;
-
-                if (status) {
-                  // Update the status in Firebase under the users node
-                  update(ref(database, `users/${username}`), {
-                    passFail: status,
+            // Add delete functionality
+            const deleteButtons = document.querySelectorAll(".delete-button");
+            deleteButtons.forEach((button) => {
+              button.addEventListener("click", (event) => {
+                const key = event.target.dataset.key;
+                remove(ref(database, `Registration/${key}`))
+                  .then(() => {
+                    alert("Registration deleted successfully.");
+                    event.target.closest(".registration-container").remove();
+                    remove(ref(database, `posts/${key}`))
                   })
-                    .then(() => {
-                      console.log(
-                        `Status updated for user ${username} to ${status}`
-                      );
-                    })
-                    .catch((error) => {
-                      console.error("Error updating status: ", error);
-                    });
-                }
+                  .catch((error) => {
+                    console.error("Error deleting registration: ", error);
+                  });
               });
             });
           } else {
@@ -253,7 +211,7 @@
         });
 
       // Fetch total accounts
-      const usersRef = ref(database, "users");
+      const usersRef = ref(database, "posts");
       get(usersRef)
         .then((snapshot) => {
           if (snapshot.exists()) {
@@ -271,17 +229,12 @@
 
       // Search functionality by first name
       document.getElementById("search-button").addEventListener("click", () => {
-        const searchInput = document
-          .getElementById("search-input")
-          .value.trim()
-          .toLowerCase(); // Convert to lowercase
-        const registrationDivs = document.querySelectorAll(
-          ".registration-container"
-        );
+        const searchInput = document.getElementById("search-input").value.trim().toLowerCase();
+        const registrationDivs = document.querySelectorAll(".registration-container");
         let found = false;
 
         registrationDivs.forEach((div) => {
-          const firstName = div.getAttribute("data-first-name").toLowerCase(); // Get first name and convert to lowercase
+          const firstName = div.getAttribute("data-first-name").toLowerCase();
           if (firstName === searchInput) {
             div.style.display = "block";
             found = true;
