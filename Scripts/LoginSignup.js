@@ -21,24 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Function to generate a unique security code
-async function generateUniqueSecurityCode() {
-  let securityCode;
-  let codeExists;
 
-  do {
-    securityCode = Math.floor(10 + Math.random() * 90); // Generate a new 5-digit security code
-    const codeRef = ref(database, `securityCodes/${securityCode}`);
-
-    // Check if the generated security code already exists
-    const snapshot = await get(codeRef);
-    codeExists = snapshot.exists(); // True if the code exists, otherwise false
-  } while (codeExists); // Continue generating until a unique code is found
-
-  // Save the unique security code in the database for tracking purposes
-  await set(ref(database, `securityCodes/${securityCode}`), true);
-  return securityCode; // Return the unique code
-}
 
 // JavaScript to handle form submission and add simple validation
 document
@@ -68,7 +51,7 @@ document
             document.getElementById("register-manualy").style.color = "red";
           } else {
             // Username is available, proceed to generate a unique security code
-            const securityCode = await generateUniqueSecurityCode(); // Wait for a unique security code
+            const securityCode = 0// Wait for a unique security code
 
             const userData = {
               username: username,

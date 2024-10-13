@@ -21,7 +21,7 @@ select {
 }
 
 input, select, button {
-  font-family: Roboto, Arial;
+  font-family: poppins, "poppin";
 }
 
 .button-primary {

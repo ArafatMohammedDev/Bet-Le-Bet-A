@@ -5,6 +5,7 @@ import {
   get,
   update
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -36,28 +37,37 @@ get(postsRef)
 
       Object.keys(postsData).forEach((postId) => {
         const post = postsData[postId];
+
+        // Split the description into words
+        const descriptionWords = post.description.split(' ');
+
+        // Check if the description has more than 20 words
+        let displayedDescription = descriptionWords.length > 20 
+          ? descriptionWords.slice(0, 20).join(' ') + '...' 
+          : post.description;
+
         posted += `
-        <div class="post" data-post-id="${postId}">
-          <div class="userInfo">
-            <i class="fa-solid fa-user"></i>
-            <h1 class="name">${post.username}</h1>
-            <p>Posted just now</p>
+          <div class="post" data-post-id="${postId}">
+            <div class="userInfo">
+              <i class="fa-solid fa-user"></i>
+              <h1 class="name">${post.username}</h1>
+              <p>Posted just now</p>
+            </div>
+            <div class="description">
+              ${displayedDescription}
+              ${descriptionWords.length > 30 ? '<a href="#">More...</a>' : ''}
+            </div>
+            <div class="likes-dislikes">
+              <button class="like-button" data-post-id="${postId}">
+                <i class="fas fa-thumbs-up"></i>
+              </button>
+              <span class="like-count">${post.likes || 0}</span>
+              <button class="dislike-button" data-post-id="${postId}">
+                <i class="fas fa-thumbs-down"></i>
+              </button>
+              <span class="dislike-count">${post.dislikes || 0}</span>
+            </div>
           </div>
-          <div class="description">
-            ${post.description}
-            <a href="#">More...</a>
-          </div>
-          <div class="likes-dislikes">
-            <button class="like-button" data-post-id="${postId}">
-              <i class="fas fa-thumbs-up"></i>
-            </button>
-            <span class="like-count">${post.likes || 0}</span>
-            <button class="dislike-button" data-post-id="${postId}">
-              <i class="fas fa-thumbs-down"></i>
-            </button>
-            <span class="dislike-count">${post.dislikes || 0}</span>
-          </div>
-        </div>
         `;
       });
 
@@ -65,21 +75,19 @@ get(postsRef)
       document.querySelector('.content-tab').innerHTML = posted;
 
       document.querySelector('.content-tab').addEventListener('click', (e) => {
-  if (e.target.closest('.like-button')) {
-    const postId = e.target.closest('.post').getAttribute('data-post-id');
-    handleLike(postId);
-  }
-});
-
+        if (e.target.closest('.like-button')) {
+          const postId = e.target.closest('.post').getAttribute('data-post-id');
+          handleLike(postId);
+        }
+      });
 
       // Attach event listeners for likes and dislikes
-    document.querySelectorAll('.like-button').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const postId = e.target.closest('.post').getAttribute('data-post-id');
-        handleLike(postId);
+      document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const postId = e.target.closest('.post').getAttribute('data-post-id');
+          handleLike(postId);
+        });
       });
-    });
-
 
       document.querySelectorAll('.dislike-button').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -173,3 +181,6 @@ function handleDislike(postId) {
     }
   });
 }
+
+document.querySelector('.banner-title')
+  .innerText = `Welcome, ${currentUser}!`;
