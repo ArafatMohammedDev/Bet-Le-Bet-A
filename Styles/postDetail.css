@@ -1,0 +1,83 @@
+body {
+    font-family: 'poppins', poppins;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 250px;
+    width: 50%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-info img {
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.user-info h1 {
+    margin: 0;
+    font-size: 50px;
+    margin-top: 35px;
+}
+
+.user-details {
+    margin-left: 20px;
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.user-details span {
+    display: block;
+}
+#user-posts {
+    margin-top: 20px;
+}
+.post {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.post .likes-dislikes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.like-button, .comment-button {
+    cursor: pointer;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.like-button:hover, .comment-button:hover {
+    background-color: #155b9a;
+}
+.stars {
+    margin-left: 20px;
+    
+}

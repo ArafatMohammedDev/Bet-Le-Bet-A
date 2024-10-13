@@ -47,7 +47,7 @@ get(postsRef)
           : post.description;
 
         posted += `
-          <div class="post" data-post-id="${postId}">
+          <div class="post" id="post" data-post-id="${postId}">
             <div class="userInfo">
               <i class="fa-solid fa-user"></i>
               <h1 class="name">${post.username}</h1>
@@ -55,7 +55,7 @@ get(postsRef)
             </div>
             <div class="description">
               ${displayedDescription}
-              ${descriptionWords.length > 30 ? '<a href="#">More...</a>' : ''}
+              ${descriptionWords.length > 30 ? `<button class="more-btn" data-post-id="${postId.id}">More...</button>` : `<button class="more-btn" data-post-id="${postId.id}">More...</a>`}
             </div>
             <div class="likes-dislikes">
               <button class="like-button" data-post-id="${postId}">
@@ -184,3 +184,22 @@ function handleDislike(postId) {
 
 document.querySelector('.banner-title')
   .innerText = `Welcome, ${currentUser}!`;
+
+
+
+
+
+
+
+// After posts are injected into the DOM
+document.querySelector('.content-tab').addEventListener('click', function(event) {
+  const target = event.target;
+
+  if (target.classList.contains("more-btn") || target.classList.contains("name")) {
+    const postDiv = target.closest(".post");
+    const postId = postDiv.getAttribute("data-post-id");
+
+    // Redirect based on postId
+    window.location.href = `postDetail.html?user=${postId}`;
+  }
+});

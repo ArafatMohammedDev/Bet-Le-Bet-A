@@ -59,6 +59,7 @@ document.getElementById("signin-form").addEventListener("submit", function (even
         // Show success message
         document.getElementById("signin-form").reset(); // Reset the form
         alert("Your submission is under review."); 
+        window.location.href = "index.html"; // Redirect to the home page
       })
       .catch((error) => {
         console.error("Error saving form data: ", error);
