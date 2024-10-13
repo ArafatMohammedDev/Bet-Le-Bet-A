@@ -141,18 +141,18 @@
   display: grid;
   grid-template-rows: repeat(2, 350px);
 }
-.post{
+.post {
   width: 95%;
   margin-left: 10px;
   margin-top: 10px;
-  height: 250px;
+  margin-bottom: 10px;
+  height: auto; /* Change this to 'auto' for flexible height */
   cursor: pointer;
   display: grid;
-  grid-template-rows: 20% 80%;
+  grid-template-rows: auto 1fr; /* Adjust rows to use auto for content */
   
-
   box-shadow: 3px 3px 10px 1px rgba(128, 128, 128, 0.2);
-  border-radius: 3px;
+  border-radius: var(--radius-24); /* Use CSS variable for consistency */
   transition: scale 500ms ease-in-out;
 }
 .post:hover{
@@ -172,11 +172,11 @@
   font-size: 20px;
   display: inline-block;
 }
-.description{
+.description {
   margin-left: 25px;
   font-size: 18px;
-  margin-top: 35px;
-} 
+  margin-top: 10px; /* Reduce top margin for better spacing */
+}
 .upload-container{
   font-size: 15px;
   margin-top: 35px;
@@ -198,4 +198,28 @@
 .upload-post-btn:hover{
   background-color: #45a049;
   scale: 1.009;
+}
+.likes-dislikes {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.like-button, .dislike-button {
+  background: none; /* No background */
+  border: none; /* No border */
+  cursor: pointer; /* Change cursor on hover */
+  font-size: 20px; /* Font size for icons */
+  margin: 0 5px; /* Space between buttons */
+  color: #007bff; /* Color for the icons */
+  transition: color 0.3s; /* Transition effect */
+}
+
+.like-button:hover, .dislike-button:hover {
+  color: #0056b3; /* Darker color on hover */
+}
+
+.like-count, .dislike-count {
+  margin: 0 10px; /* Space around counts */
+  font-size: 18px; /* Font size for counts */
 }

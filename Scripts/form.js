@@ -23,6 +23,7 @@ const database = getDatabase(app);
 
 // JavaScript to handle form submission
 // JavaScript to handle form submission
+// JavaScript to handle form submission
 document.getElementById("signin-form").addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent form submission
 
@@ -38,7 +39,7 @@ document.getElementById("signin-form").addEventListener("submit", function (even
   // Simple validation (ensure all fields are filled out)
   if (description && location && phoneNumber && password && username) {
     // Reference to the 'underReview' node
-    const reviewRef = ref(database, 'underReview'); // Change to your desired path
+    const reviewRef = ref(database, 'underReview');
 
     const formData = {
       description: description,
@@ -47,15 +48,17 @@ document.getElementById("signin-form").addEventListener("submit", function (even
       password: password,
       username: username,
       status: 'under review', // Set the status to "under review"
-      createdAt: new Date().toISOString(), // Optional: timestamp for when it was created
+      createdAt: new Date().toISOString(),
+      likes: 0,  // Initialize likes
+      dislikes: 0  // Initialize dislikes
     };
 
     // Save the form data in Firebase
-    push(reviewRef, formData) // Use push to generate a unique ID for the new entry
+    push(reviewRef, formData)
       .then(() => {
         // Show success message
         document.getElementById("signin-form").reset(); // Reset the form
-        alert("Your submission is under review."); // Optional: alert for user
+        alert("Your submission is under review."); 
       })
       .catch((error) => {
         console.error("Error saving form data: ", error);
